@@ -29,4 +29,4 @@ define_stage :local_development do
     end
     after "update", "tomcat:build_deploy_restart" # keep only the last 5 releases
     after "tomcat:build_deploy_restart", "deploy:cleanup" # keep only the last 5 releases
-do
+end
