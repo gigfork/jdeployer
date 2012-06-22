@@ -11,8 +11,8 @@ Simple JavaEE6 app to test deployment with Capistrano
 7. Make sure Tomcat is running
 8. Make sure Tomcat managers are configured - http://tomcat.apache.org/tomcat-7.0-doc/manager-howto.html#Configuring_Manager_Application_Access
 
-    <user username="tomcat" password="tomcat" roles="manager-gui"/>
-    <user username="tomcatt" password="tomcatt" roles="manager-script"/>
+  <user username="tomcat" password="tomcat" roles="manager-gui"/>
+  <user username="tomcatt" password="tomcatt" roles="manager-script"/>
 
 9. Run "cap local deploy"
 
