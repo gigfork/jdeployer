@@ -19,7 +19,7 @@ user username="tomcatt" password="tomcatt" roles="manager-script"
 
 Finally - Run "cap local deploy"
 
-To run a specific version "cap -S revision=<GIT SHA> local deploy"
+To run a specific version "cap -S revision=FULL-GIT-SHA local deploy"
 
 __Note__
 
