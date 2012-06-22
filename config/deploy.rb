@@ -25,7 +25,7 @@ namespace :tomcat do
     #puts "==================Stop Tomcat======================"
     #run "export JAVA_HOME=#{java_home} && #{tomcat_home}/bin/shutdown.sh"
     puts "==================Copy war to Tomcat======================"
-    run "curl --upload-file #{deploy_to}/current/target/#{application}*.war --user tomcatt:tomcatt http://$CAPISTRANO:HOST$:8080/manager/text/reload?path=/#{application}"
+    run "curl --upload-file #{deploy_to}/current/target/#{application}*.war --user tomcatt:tomcatt http://$CAPISTRANO:HOST$:8080/manager/text/deploy?path=/#{application}"
     #puts "==================Start Tomcat======================"
     #run "export JAVA_HOME=#{java_home} && #{tomcat_home}/bin/startup.sh"
     #puts "==========================================================="
