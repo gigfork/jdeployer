@@ -24,3 +24,5 @@ To run a specific version "cap -S revision=FULL-GIT-SHA local deploy"
 __Note__
 
 You can use this project as a sample Java project to start things off
+
+You can add more environments by editing the config/deploy.rb file and adding code like the "task :local do ... end" block
