@@ -6,7 +6,7 @@ set :branch, "master"
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
-namespace :local do
+task :local do
     roles.clear
     server "localhost", :app
     set :user, "rockyj"
@@ -27,6 +27,6 @@ namespace :local do
         run "curl --upload-file #{deploy_to}/current/target/#{application}*.war --user #{tomcat_manager}:#{tomcat_manager_password} http://$CAPISTRANO:HOST$:8080/manager/text/deploy?path=/#{application}"
       end
     end
-    after "deploy", "local:tomcat:deploy" # keep only the last 5 releases
+    after "deploy", "tomcat:deploy" # keep only the last 5 releases
     after "tomcat:deploy", "deploy:cleanup" # keep only the last 5 releases
 end
