@@ -1,3 +1,4 @@
+set :application, "jdeployer"
 set :scm, "git"
 set :repository, "git@github.com:rocky-jaiswal/#{application}.git"
 set :branch, "master"
@@ -9,7 +10,6 @@ define_stage :local_development do
     roles.clear
     server "localhost", :app
     set :user, "rockyj"
-    set :application, "jdeployer"
     set :java_home, "/home/#{user}/jdk1.7.0_04"
     set :tomcat_home, "/home/#{user}/Apps/apache-tomcat-7.0.28"
     set :tomcat_manager, "tomcatt"
