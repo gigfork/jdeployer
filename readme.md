@@ -17,9 +17,9 @@ user username="tomcat" password="tomcat" roles="manager-gui"
 
 user username="tomcatt" password="tomcatt" roles="manager-script"
 
-Finally - Run "cap local deploy"
+Finally - Run "__cap local deploy__"
 
-To run a specific version "cap -S revision=FULL-GIT-SHA local deploy"
+To run a specific version "__cap -S revision=FULL-GIT-SHA local deploy__"
 
 __Note__
 
