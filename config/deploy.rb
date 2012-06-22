@@ -6,7 +6,7 @@ set :branch, "master"
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
-define_stage :local_development do
+task :local_development do
     roles.clear
     server "localhost", :app
     set :user, "rockyj"
