@@ -6,7 +6,7 @@ set :branch, "master"
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
-task :local_development do
+namespace :local do
     roles.clear
     server "localhost", :app
     set :user, "rockyj"
@@ -18,15 +18,15 @@ task :local_development do
     set :deploy_to, "/home/#{user}/Temp/#{application}"
     set :use_sudo, false
     namespace :tomcat do
-      task :build_deploy_restart do
+      task :deploy do
         puts "==================Building with Maven======================"
         run "export JAVA_HOME=#{java_home} && cd #{deploy_to}/current && #{maven_home}/bin/mvn clean package"
         puts "==================Undeploy war======================"
-        run "curl --user #{tomcat_manager}:#{tomcat_manager_password} http://$CAPISTRANO:HOST$:8080/manager/text/deploy?path=/#{application}"
+        run "curl --user #{tomcat_manager}:#{tomcat_manager_password} http://$CAPISTRANO:HOST$:8080/manager/text/undeploy?path=/#{application}"
         puts "==================Deploy war to Tomcat======================"
         run "curl --upload-file #{deploy_to}/current/target/#{application}*.war --user #{tomcat_manager}:#{tomcat_manager_password} http://$CAPISTRANO:HOST$:8080/manager/text/deploy?path=/#{application}"
       end
     end
-    after "update", "tomcat:build_deploy_restart" # keep only the last 5 releases
-    after "tomcat:build_deploy_restart", "deploy:cleanup" # keep only the last 5 releases
+    after "deploy", "local:tomcat:deploy" # keep only the last 5 releases
+    after "tomcat:deploy", "deploy:cleanup" # keep only the last 5 releases
 end
