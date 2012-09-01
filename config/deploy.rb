@@ -15,7 +15,7 @@ task :local do
     set :tomcat_manager, "manager"
     set :tomcat_manager_password, "manager"
     set :maven_home, "/home/#{user}/Apps/apache-maven-3.0.3"
-    set :deploy_to, "/home/#{user}/Temp/#{application}"
+    set :deploy_to, "/home/#{user}/tmp/#{application}"
     set :use_sudo, false
     namespace :tomcat do
       task :deploy do
