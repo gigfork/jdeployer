@@ -10,10 +10,10 @@ task :local do
     roles.clear
     server "localhost", :app
     set :user, "rockyj"
-    set :java_home, "/home/#{user}/jdk1.7.0_04"
-    set :tomcat_home, "/home/#{user}/Apps/apache-tomcat-7.0.28"
-    set :tomcat_manager, "tomcatt"
-    set :tomcat_manager_password, "tomcatt"
+    set :java_home, "/home/#{user}/jdk1.7.0_05"
+    set :tomcat_home, "/home/#{user}/Apps/apache-tomcat-7.0.29"
+    set :tomcat_manager, "manager"
+    set :tomcat_manager_password, "manager"
     set :maven_home, "/home/#{user}/Apps/apache-maven-3.0.3"
     set :deploy_to, "/home/#{user}/Temp/#{application}"
     set :use_sudo, false
@@ -27,6 +27,6 @@ task :local do
         run "curl --upload-file #{deploy_to}/current/target/#{application}*.war --user #{tomcat_manager}:#{tomcat_manager_password} http://$CAPISTRANO:HOST$:8080/manager/text/deploy?path=/#{application}"
       end
     end
-    after "deploy", "tomcat:deploy" # keep only the last 5 releases
+    after "deploy", "tomcat:deploy"
     after "tomcat:deploy", "deploy:cleanup" # keep only the last 5 releases
 end
